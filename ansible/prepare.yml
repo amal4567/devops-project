@@ -1,0 +1,14 @@
+- name: Prepare nodes
+  hosts: k8s_cluster
+  become: yes
+
+  tasks:
+
+    - name: Update apt
+      apt:
+        update_cache: yes
+
+    - name: Install curl
+      apt:
+        name: curl
+        state: present
