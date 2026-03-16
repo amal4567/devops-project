@@ -36,22 +36,26 @@ pipeline {
         }
 
         stage('Deploy to Kubernetes Master') {
-            steps {
-                sshagent(credentials: ['k8s-master-ssh']) {
-                    bat """
-                    scp -o StrictHostKeyChecking=no %K8S_DEPLOYMENT_FILE% ubuntu@%MASTER_IP%:~/app-deployment.yaml
-                    scp -o StrictHostKeyChecking=no %K8S_SERVICE_FILE% ubuntu@%MASTER_IP%:~/app-service.yaml
+           steps {
+            withCredentials([sshUserPrivateKey(
+                credentialsId: 'k8s-master-ssh',
+                keyFileVariable: 'SSH_KEY',
+                usernameVariable: 'SSH_USER'
+            )]) {
+                bat """
+                scp -i "%SSH_KEY%" -o StrictHostKeyChecking=no %K8S_DEPLOYMENT_FILE% %SSH_USER%@%MASTER_IP%:~/app-deployment.yaml
+                scp -i "%SSH_KEY%" -o StrictHostKeyChecking=no %K8S_SERVICE_FILE% %SSH_USER%@%MASTER_IP%:~/app-service.yaml
 
-                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl apply -f ~/app-deployment.yaml"
-                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl apply -f ~/app-service.yaml"
-                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl rollout restart deployment/%K8S_DEPLOYMENT_NAME%"
-                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl rollout status deployment/%K8S_DEPLOYMENT_NAME% --timeout=180s"
-                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl get pods"
-                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl get svc"
-                    """
-                }
+                ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo kubectl apply -f ~/app-deployment.yaml"
+                ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo kubectl apply -f ~/app-service.yaml"
+                ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo kubectl rollout restart deployment/%K8S_DEPLOYMENT_NAME%"
+                ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo kubectl rollout status deployment/%K8S_DEPLOYMENT_NAME% --timeout=180s"
+                ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo kubectl get pods"
+                ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo kubectl get svc"
+                """
             }
         }
+    }
     }
 
     post {
