@@ -6,13 +6,6 @@ pipeline {
     }
 
     stages {
-
-        stage('Clone') {
-            steps {
-                git 'https://github.com/amal4567/devops-project.git'
-            }
-        }
-
         stage('Build Docker') {
             steps {
                 bat 'docker build -t %DOCKER_IMAGE%:latest .'
