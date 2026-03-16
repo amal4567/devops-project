@@ -2,13 +2,18 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "amalguerdani/flask-app"
+        DOCKER_IMAGE = "amalguerdani/flask-app:latest"
+        GITHUB_REPO_URL = "https://github.com/amal4567/devops-project.git"
+        MASTER_IP = "15.188.233.85"
+        K8S_DEPLOYMENT_FILE = "k8s\\app-deployment.yaml"
+        K8S_SERVICE_FILE = "k8s\\app-service.yaml"
+        K8S_DEPLOYMENT_NAME = "flask-app"
     }
 
     stages {
         stage('Build Docker') {
             steps {
-                bat 'docker build -t %DOCKER_IMAGE%:latest .'
+                bat 'docker build -t %DOCKER_IMAGE% .'
             }
         }
 
@@ -16,18 +21,45 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub',
-                    usernameVariable: 'USER',
-                    passwordVariable: 'PASS'
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    bat 'echo %PASS% | docker login -u %USER% --password-stdin'
+                    bat 'echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin'
                 }
             }
         }
 
         stage('Push Image') {
             steps {
-                bat 'docker push %DOCKER_IMAGE%:latest'
+                bat 'docker push %DOCKER_IMAGE%'
             }
+        }
+
+        stage('Deploy to Kubernetes Master') {
+            steps {
+                sshagent(credentials: ['k8s-master-ssh']) {
+                    bat """
+                    scp -o StrictHostKeyChecking=no %K8S_DEPLOYMENT_FILE% ubuntu@%MASTER_IP%:~/app-deployment.yaml
+                    scp -o StrictHostKeyChecking=no %K8S_SERVICE_FILE% ubuntu@%MASTER_IP%:~/app-service.yaml
+
+                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl apply -f ~/app-deployment.yaml"
+                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl apply -f ~/app-service.yaml"
+                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl rollout restart deployment/%K8S_DEPLOYMENT_NAME%"
+                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl rollout status deployment/%K8S_DEPLOYMENT_NAME% --timeout=180s"
+                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl get pods"
+                    ssh -o StrictHostKeyChecking=no ubuntu@%MASTER_IP% "sudo kubectl get svc"
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline SUCCESS: build, push, and deploy completed.'
+        }
+        failure {
+            echo 'Pipeline FAILED: check the console output.'
         }
     }
 }
