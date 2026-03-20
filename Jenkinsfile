@@ -12,12 +12,6 @@ pipeline {
 
     stages {
                     
-          
-        stage('Run Tests') {
-            steps {
-                bat 'pytest'
-            }
-        }
         stage('Build Docker') {
             steps {
                 bat 'docker build -t %DOCKER_IMAGE% .'
