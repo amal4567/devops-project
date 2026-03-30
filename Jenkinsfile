@@ -52,41 +52,34 @@ pipeline {
             }
         }
 
-        stage('Prepare Kubernetes Manifest') {
-            steps {
-                bat '''
-                powershell -Command "(Get-Content %K8S_DEPLOYMENT_FILE%) -replace 'amalguerdani/flask-app:latest','%DOCKER_IMAGE%' | Set-Content k8s\\app-deployment-temp.yaml"
-                '''
-            }
-        }
-
         stage('Deploy to Kubernetes Master') {
-            steps {
-                withCredentials([sshUserPrivateKey(
-                    credentialsId: 'k8s-master-ssh',
-                    keyFileVariable: 'SSH_KEY',
-                    usernameVariable: 'SSH_USER'
-                )]) {
-                    bat '''
-                    copy "%SSH_KEY%" "%WORKSPACE%\\jenkins_deploy_key" >nul
-                    icacls "%WORKSPACE%\\jenkins_deploy_key" /inheritance:r
-                    icacls "%WORKSPACE%\\jenkins_deploy_key" /grant:r "%USERNAME%:R" >nul
+    steps {
+        withCredentials([sshUserPrivateKey(
+            credentialsId: 'k8s-master-ssh',
+            keyFileVariable: 'SSH_KEY',
+            usernameVariable: 'SSH_USER'
+        )]) {
+            bat '''
+            copy "%SSH_KEY%" "%WORKSPACE%\\jenkins_deploy_key" >nul
+            icacls "%WORKSPACE%\\jenkins_deploy_key" /inheritance:r
+            icacls "%WORKSPACE%\\jenkins_deploy_key" /grant:r "%USERNAME%:R" >nul
 
-                    scp -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no "k8s\\app-deployment-temp.yaml" %SSH_USER%@%MASTER_IP%:~/app-deployment.yaml
-                    scp -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no "%K8S_SERVICE_FILE%" %SSH_USER%@%MASTER_IP%:~/app-service.yaml
+            scp -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no "%K8S_DEPLOYMENT_FILE%" %SSH_USER%@%MASTER_IP%:~/app-deployment.yaml
+            scp -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no "%K8S_SERVICE_FILE%" %SSH_USER%@%MASTER_IP%:~/app-service.yaml
 
-                    ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl apply -f ~/app-service.yaml --validate=false"
-                    ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl apply -f ~/app-deployment.yaml --validate=false"
-                    ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl rollout status deployment/%K8S_DEPLOYMENT_NAME% --timeout=180s"
-                    ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl get pods -o wide"
-                    ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl get svc"
+            ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl apply -f ~/app-service.yaml --validate=false"
+            ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl apply -f ~/app-deployment.yaml --validate=false"
+            ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl set image deployment/%K8S_DEPLOYMENT_NAME% flask-app=%DOCKER_IMAGE%"
+            ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl rollout status deployment/%K8S_DEPLOYMENT_NAME% --timeout=180s"
+            ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl get deployment %K8S_DEPLOYMENT_NAME% -o=jsonpath='{.spec.template.spec.containers[0].image}'; echo"
+            ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl get pods -o wide"
+            ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl get svc"
 
-                    del "%WORKSPACE%\\jenkins_deploy_key"
-                    del "k8s\\app-deployment-temp.yaml"
-                    '''
-                }
-            }
+            del "%WORKSPACE%\\jenkins_deploy_key"
+            '''
         }
+    }
+}
     }
 
     post {
