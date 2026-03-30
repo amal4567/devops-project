@@ -1,11 +1,9 @@
 - name: Install k3s worker
   hosts: worker
   become: yes
-
   vars:
     master_ip: "172.31.36.190"
     token: "{{ lookup('file', './node-token') }}"
-
   tasks:
     - name: Join cluster
       shell: |

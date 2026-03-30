@@ -28,7 +28,18 @@ pipeline {
                 bat 'docker build -t %DOCKER_IMAGE% -t %DOCKER_IMAGE_LATEST% .'
             }
         }
+       stage('Install dependencies') {
+            steps {
+                bat 'py -m pip install -r requirements.txt'
+                bat 'py -m pip install pytest'
+            }
+        }
 
+        stage('Test') {
+            steps {
+                bat 'py -m pytest -v'
+            }
+        }
         stage('Login to DockerHub') {
             steps {
                 withCredentials([usernamePassword(

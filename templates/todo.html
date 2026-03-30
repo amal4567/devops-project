@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mes Tâches ✨</title>
+    <title>TaskFlow — Mes Tâches</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -15,77 +15,95 @@
         box-sizing: border-box;
       }
 
-      /* ===== LIGHT MODE ===== */
+      /* ===== LIGHT MODE — Bleu marine & or ===== */
       :root,
       [data-theme="light"] {
-        --pink: #f472b6;
-        --pink-deep: #db2777;
-        --pink-light: #fce7f3;
-        --pink-soft: #fdf2f8;
-        --lavender: #e9d5ff;
-        --bg-a: #fdf2f8;
-        --bg-b: #f5f0ff;
-        --bg-c: #ede9fe;
-        --blob1: #f9a8d4;
-        --blob2: #c4b5fd;
-        --card-bg: rgba(255, 255, 255, 0.88);
-        --card-border: rgba(255, 255, 255, 0.95);
+        --accent: #c9a84c;
+        --accent-deep: #a67c32;
+        --accent-light: #fdf6e3;
+        --navy: #1a2744;
+        --navy-mid: #243558;
+        --navy-light: #e8edf5;
+        --bg-a: #f0f3f9;
+        --bg-b: #e8edf5;
+        --bg-c: #dde3ef;
+        --blob1: #c9a84c;
+        --blob2: #1a2744;
+        --card-bg: rgba(255, 255, 255, 0.92);
+        --card-border: rgba(255, 255, 255, 0.98);
         --surface: #ffffff;
-        --surface2: #fdf2f8;
-        --input-bg: #fdf2f8;
-        --border: #f3d0e8;
-        --text: #1e1025;
-        --muted: #9d8ea8;
-        --shadow: 0 4px 24px rgba(219, 39, 119, 0.1);
-        --shadow-lg: 0 16px 48px rgba(219, 39, 119, 0.15);
+        --surface2: #f5f7fc;
+        --input-bg: #f5f7fc;
+        --border: #d6dcea;
+        --text: #0f1829;
+        --muted: #7a869e;
+        --shadow: 0 4px 24px rgba(26, 39, 68, 0.1);
+        --shadow-lg: 0 16px 48px rgba(26, 39, 68, 0.14);
         --green: #10b981;
         --orange: #f59e0b;
         --red: #ef4444;
-        --done-bg: #f9f9f9;
+        --done-bg: #f8f9fb;
         --check-bg: #ffffff;
-        --check-border: #f3d0e8;
-        --del-color: #d1a0bc;
-        --del-border: #f0d0e4;
-        --footer-bg: #fdf2f8;
-        --section-line: #f3d0e8;
-        --prio-moy-bg: #fef3c7;
+        --check-border: #d6dcea;
+        --del-color: #a0aec0;
+        --del-border: #e2e8f0;
+        --footer-bg: #f0f3f9;
+        --prio-moy-bg: #fef9e7;
         --prio-moy-text: #b45309;
+        --auth-overlay: rgba(240, 243, 249, 0.94);
+        --header-grad: linear-gradient(
+          135deg,
+          #1a2744 0%,
+          #243558 60%,
+          #1e3a6e 100%
+        );
+        --btn-grad: linear-gradient(135deg, #c9a84c, #a67c32);
+        --lavender: #e8edf5;
       }
 
       /* ===== DARK MODE ===== */
       [data-theme="dark"] {
-        --pink: #f472b6;
-        --pink-deep: #db2777;
-        --pink-light: #4a1030;
-        --pink-soft: #2a0a1e;
-        --lavender: #2d1245;
-        --bg-a: #0f0710;
-        --bg-b: #130a18;
-        --bg-c: #0d0814;
-        --blob1: #9d174d;
-        --blob2: #5b21b6;
-        --card-bg: rgba(28, 10, 30, 0.93);
-        --card-border: rgba(244, 114, 182, 0.13);
-        --surface: #1e0b22;
-        --surface2: #270d2c;
-        --input-bg: #270d2c;
-        --border: rgba(244, 114, 182, 0.16);
-        --text: #f5e6f0;
-        --muted: #8b6e82;
+        --accent: #d4af5a;
+        --accent-deep: #b8962e;
+        --accent-light: #2a2010;
+        --navy: #0d1526;
+        --navy-mid: #111e38;
+        --navy-light: #1a2744;
+        --bg-a: #080e1c;
+        --bg-b: #0d1526;
+        --bg-c: #0a1120;
+        --blob1: #c9a84c;
+        --blob2: #1a2744;
+        --card-bg: rgba(13, 21, 38, 0.95);
+        --card-border: rgba(201, 168, 76, 0.13);
+        --surface: #111e38;
+        --surface2: #0f1a30;
+        --input-bg: #0f1a30;
+        --border: rgba(201, 168, 76, 0.15);
+        --text: #e8edf5;
+        --muted: #6b7a99;
         --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-        --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+        --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.65);
         --green: #34d399;
         --orange: #fbbf24;
         --red: #f87171;
-        --done-bg: #160a1a;
-        --check-bg: #1e0b22;
-        --check-border: rgba(244, 114, 182, 0.25);
-        --del-color: #7a4060;
-        --del-border: rgba(244, 114, 182, 0.15);
-        --footer-bg: #1a0820;
-        --section-line: rgba(244, 114, 182, 0.13);
+        --done-bg: #090f1e;
+        --check-bg: #111e38;
+        --check-border: rgba(201, 168, 76, 0.25);
+        --del-color: #4a5a7a;
+        --del-border: rgba(201, 168, 76, 0.15);
+        --footer-bg: #0a1020;
         --prio-moy-bg: #1f1a08;
         --prio-moy-text: #fbbf24;
+        --auth-overlay: rgba(8, 14, 28, 0.96);
+        --header-grad: linear-gradient(
+          135deg,
+          #080e1c 0%,
+          #0d1526 60%,
+          #0a1932 100%
+        );
+        --btn-grad: linear-gradient(135deg, #d4af5a, #b8962e);
+        --lavender: #1a2744;
       }
 
       /* ===== THEME TOGGLE ===== */
@@ -93,21 +111,20 @@
         position: fixed;
         top: 16px;
         right: 16px;
-        z-index: 100;
+        z-index: 200;
         display: flex;
         align-items: center;
-        background: rgba(255, 255, 255, 0.25);
-        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 30px;
         padding: 3px;
         backdrop-filter: blur(12px);
-        box-shadow: 0 4px 16px rgba(219, 39, 119, 0.15);
+        box-shadow: 0 4px 16px rgba(26, 39, 68, 0.15);
         transition: all 0.3s;
       }
       [data-theme="dark"] .theme-toggle {
-        background: rgba(28, 10, 30, 0.8);
-        border-color: rgba(244, 114, 182, 0.2);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        background: rgba(13, 21, 38, 0.85);
+        border-color: rgba(201, 168, 76, 0.2);
       }
       .toggle-opt {
         padding: 5px 13px;
@@ -118,21 +135,20 @@
         cursor: pointer;
         border: none;
         background: transparent;
-        color: rgba(219, 39, 119, 0.5);
+        color: rgba(26, 39, 68, 0.45);
         transition: all 0.25s;
       }
       .toggle-opt.active {
         background: white;
-        color: var(--pink-deep);
-        box-shadow: 0 2px 8px rgba(219, 39, 119, 0.2);
+        color: var(--navy);
+        box-shadow: 0 2px 8px rgba(26, 39, 68, 0.18);
       }
       [data-theme="dark"] .toggle-opt {
-        color: rgba(244, 114, 182, 0.4);
+        color: rgba(201, 168, 76, 0.4);
       }
       [data-theme="dark"] .toggle-opt.active {
-        background: var(--pink-deep);
-        color: white;
-        box-shadow: 0 2px 8px rgba(219, 39, 119, 0.4);
+        background: var(--navy-light);
+        color: var(--accent);
       }
 
       body {
@@ -144,15 +160,15 @@
           var(--bg-c) 100%
         );
         min-height: 100vh;
+        height: 100vh;
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 40px 16px 80px;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
         position: relative;
-        overflow-x: hidden;
+        overflow: hidden;
         transition: background 0.4s;
       }
-
       body::before {
         content: "";
         position: fixed;
@@ -160,33 +176,29 @@
         height: 500px;
         background: var(--blob1);
         border-radius: 50%;
-        filter: blur(100px);
-        opacity: 0.2;
+        filter: blur(120px);
+        opacity: 0.08;
         top: -150px;
         right: -150px;
         pointer-events: none;
         z-index: 0;
         animation: float 9s ease-in-out infinite alternate;
-        transition: background 0.4s;
       }
-
       body::after {
         content: "";
         position: fixed;
-        width: 350px;
-        height: 350px;
+        width: 400px;
+        height: 400px;
         background: var(--blob2);
         border-radius: 50%;
-        filter: blur(100px);
-        opacity: 0.2;
+        filter: blur(120px);
+        opacity: 0.12;
         bottom: -100px;
         left: -100px;
         pointer-events: none;
         z-index: 0;
         animation: float 11s ease-in-out infinite alternate-reverse;
-        transition: background 0.4s;
       }
-
       @keyframes float {
         from {
           transform: translate(0, 0);
@@ -195,26 +207,6 @@
           transform: translate(25px, 20px);
         }
       }
-
-      /* ===== CONTAINER ===== */
-      .container {
-        width: 100%;
-        max-width: 560px;
-        background: var(--card-bg);
-        backdrop-filter: blur(24px);
-        border-radius: 28px;
-        box-shadow: var(--shadow-lg);
-        border: 1px solid var(--card-border);
-        overflow: hidden;
-        position: relative;
-        z-index: 1;
-        animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-        transition:
-          background 0.3s,
-          border-color 0.3s,
-          box-shadow 0.3s;
-      }
-
       @keyframes popIn {
         from {
           opacity: 0;
@@ -225,118 +217,548 @@
           transform: translateY(0) scale(1);
         }
       }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-6px);
+        }
+        75% {
+          transform: translateX(6px);
+        }
+      }
+      @keyframes wiggle {
+        0%,
+        100% {
+          transform: rotate(-6deg);
+        }
+        50% {
+          transform: rotate(6deg);
+        }
+      }
+
+      /* ===== NOTIFICATION BANNER ===== */
+      #notifBanner {
+        display: none;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 0;
+        overflow: hidden;
+        animation: slideDown 0.4s ease both;
+        position: relative;
+        z-index: 2;
+      }
+      .notif-inner {
+        padding: 14px 18px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        border-radius: 16px;
+        border: 1.5px solid;
+      }
+      .notif-inner.danger {
+        background: #fff1f0;
+        border-color: #fca5a5;
+      }
+      .notif-inner.warning {
+        background: #fffbeb;
+        border-color: #fcd34d;
+      }
+      .notif-inner.info {
+        background: #eff6ff;
+        border-color: #93c5fd;
+      }
+      [data-theme="dark"] .notif-inner.danger {
+        background: #2a0a0a;
+        border-color: #f87171;
+      }
+      [data-theme="dark"] .notif-inner.warning {
+        background: #1f1708;
+        border-color: #fbbf24;
+      }
+      [data-theme="dark"] .notif-inner.info {
+        background: #0a1528;
+        border-color: #60a5fa;
+      }
+      .notif-icon {
+        font-size: 22px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .notif-body {
+        flex: 1;
+      }
+      .notif-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .notif-list {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .notif-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: var(--muted);
+        padding: 0 2px;
+        transition: color 0.2s;
+        flex-shrink: 0;
+      }
+      .notif-close:hover {
+        color: var(--text);
+      }
+
+      /* ===== AUTH OVERLAY ===== */
+      #authOverlay {
+        position: fixed;
+        inset: 0;
+        z-index: 150;
+        background: var(--auth-overlay);
+        backdrop-filter: blur(18px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        animation: fadeIn 0.4s ease both;
+      }
+      .auth-card {
+        width: 100%;
+        max-width: 400px;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 28px;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      .auth-header {
+        background: var(--header-grad);
+        padding: 30px 28px 24px;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+      .auth-header::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(201, 168, 76, 0.12);
+      }
+      .auth-header::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 40px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(201, 168, 76, 0.07);
+      }
+      .auth-logo {
+        font-size: 34px;
+        display: block;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 1;
+      }
+      .auth-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+        position: relative;
+        z-index: 1;
+        letter-spacing: 0.5px;
+      }
+      .auth-title span {
+        color: var(--accent);
+      }
+      .auth-sub {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 5px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .auth-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface2);
+      }
+      .auth-tab {
+        flex: 1;
+        padding: 13px;
+        text-align: center;
+        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        color: var(--muted);
+        transition: all 0.2s;
+        border-bottom: 2px solid transparent;
+      }
+      .auth-tab.active {
+        color: var(--navy);
+        border-bottom-color: var(--accent);
+        background: var(--surface);
+      }
+      [data-theme="dark"] .auth-tab.active {
+        color: var(--accent);
+      }
+
+      .auth-body {
+        padding: 24px;
+      }
+      .auth-field {
+        margin-bottom: 14px;
+      }
+      .auth-label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .auth-input {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 14px;
+        border: 1.5px solid var(--border);
+        background: var(--input-bg);
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        color: var(--text);
+        outline: none;
+        transition: all 0.2s;
+      }
+      .auth-input:focus {
+        border-color: var(--accent);
+        background: var(--surface);
+        box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.12);
+      }
+      .auth-input::placeholder {
+        color: var(--muted);
+      }
+
+      .pw-wrap {
+        position: relative;
+      }
+      .pw-wrap .auth-input {
+        padding-right: 44px;
+      }
+      .eye-btn {
+        position: absolute;
+        right: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 17px;
+        color: var(--muted);
+        padding: 2px;
+        transition: color 0.2s;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .eye-btn:hover {
+        color: var(--accent-deep);
+      }
+
+      .auth-error {
+        background: #fff1f0;
+        border: 1px solid #fca5a5;
+        color: #dc2626;
+        border-radius: 12px;
+        padding: 10px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 14px;
+        display: none;
+        animation: shake 0.3s ease;
+      }
+      [data-theme="dark"] .auth-error {
+        background: #2a0a0a;
+        border-color: #f87171;
+        color: #f87171;
+      }
+
+      .btn-auth {
+        width: 100%;
+        padding: 14px;
+        background: var(--btn-grad);
+        color: white;
+        border: none;
+        border-radius: 14px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px 14px rgba(201, 168, 76, 0.35);
+        margin-top: 4px;
+        letter-spacing: 0.3px;
+      }
+      .btn-auth:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(201, 168, 76, 0.45);
+      }
+
+      /* ===== MAIN CONTAINER ===== */
+      .container {
+        width: 100%;
+        flex: 1;
+        background: var(--card-bg);
+        backdrop-filter: blur(24px);
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
+        z-index: 1;
+        animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        display: none;
+        max-width: 900px;
+        margin: 0 auto;
+      }
 
       /* ===== HEADER ===== */
       .header {
-        background: linear-gradient(135deg, #f472b6, #db2777);
-        padding: 28px 28px 24px;
+        background: var(--header-grad);
+        padding: 24px 24px 20px;
         position: relative;
         overflow: hidden;
       }
-
       .header::before {
         content: "";
         position: absolute;
         top: -40px;
         right: -40px;
-        width: 140px;
-        height: 140px;
-        background: rgba(255, 255, 255, 0.1);
+        width: 160px;
+        height: 160px;
         border-radius: 50%;
+        background: rgba(201, 168, 76, 0.1);
       }
-
-      .header::after {
-        content: "";
+      .header-goldline {
         position: absolute;
-        bottom: -24px;
-        left: 50px;
-        width: 90px;
-        height: 90px;
-        background: rgba(255, 255, 255, 0.07);
-        border-radius: 50%;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent),
+          transparent
+        );
       }
-
       .header-row {
         display: flex;
         align-items: center;
-        gap: 14px;
+        gap: 12px;
         position: relative;
         z-index: 1;
       }
-
       .logo-box {
-        width: 46px;
-        height: 46px;
-        background: rgba(255, 255, 255, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 14px;
+        width: 44px;
+        height: 44px;
+        background: rgba(201, 168, 76, 0.15);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 13px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 22px;
+        font-size: 20px;
         flex-shrink: 0;
       }
-
       .header-title {
-        font-family: "Playfair Display", serif;
-        font-size: 24px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 700;
         color: white;
+        letter-spacing: 0.3px;
       }
-
+      .header-title span {
+        color: var(--accent);
+      }
       .header-sub {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.65);
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.5);
         margin-top: 2px;
       }
-
-      .stats-row {
-        display: flex;
-        gap: 10px;
+      .user-badge {
         margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(201, 168, 76, 0.12);
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        border-radius: 20px;
+        padding: 5px 8px 5px 12px;
         position: relative;
         z-index: 1;
       }
-
-      .stat-pill {
-        background: rgba(255, 255, 255, 0.18);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 20px;
-        padding: 4px 12px;
+      .user-name {
         font-size: 12px;
+        font-weight: 700;
+        color: var(--accent);
+      }
+      .btn-logout {
+        background: rgba(201, 168, 76, 0.18);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 12px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 9px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: "DM Sans", sans-serif;
+      }
+      .btn-logout:hover {
+        background: rgba(201, 168, 76, 0.3);
         color: white;
-        font-weight: 600;
+      }
+      .stats-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+        position: relative;
+        z-index: 1;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .stat-pill {
+        background: rgba(201, 168, 76, 0.12);
+        border: 1px solid rgba(201, 168, 76, 0.22);
+        border-radius: 20px;
+        padding: 5px 14px;
+        font-size: 13px;
+        color: white;
+        font-weight: 700;
         text-align: center;
       }
-
       .stat-pill span {
         display: block;
         font-size: 9px;
         font-weight: 400;
-        opacity: 0.75;
+        opacity: 0.6;
+        margin-top: 1px;
+      }
+      .notif-perm-btn {
+        display: none;
+        margin-left: auto;
+        background: rgba(201, 168, 76, 0.15);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 12px;
+        color: var(--accent);
+        font-family: "DM Sans", sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 5px 11px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .notif-perm-btn:hover {
+        background: rgba(201, 168, 76, 0.28);
       }
 
-      /* ===== SEARCH BAR ===== */
+      /* ===== PROGRESS ===== */
+      .progress-wrap {
+        padding: 16px 24px 14px;
+      }
+      .progress-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 7px;
+        font-weight: 600;
+      }
+      .progress-label span:last-child {
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .progress-bar {
+        height: 5px;
+        background: var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+        border-radius: 10px;
+        transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* ===== SEARCH ===== */
       .search-wrap {
-        padding: 18px 24px 0;
+        padding: 0 24px;
       }
-
       .search-input-wrap {
         position: relative;
       }
-
       .search-icon {
         position: absolute;
         left: 14px;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 15px;
-        opacity: 0.4;
+        font-size: 14px;
+        opacity: 0.35;
         pointer-events: none;
       }
-
       #searchInput {
         width: 100%;
-        padding: 11px 14px 11px 40px;
+        padding: 11px 14px 11px 38px;
         border-radius: 14px;
         border: 1.5px solid var(--border);
         background: var(--input-bg);
@@ -346,27 +768,24 @@
         outline: none;
         transition: all 0.2s;
       }
-
       #searchInput:focus {
-        border-color: var(--pink);
+        border-color: var(--accent);
         background: var(--surface);
-        box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.1);
+        box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.1);
       }
-
       #searchInput::placeholder {
         color: var(--muted);
       }
 
       /* ===== FILTERS ===== */
       .filters {
-        padding: 14px 24px 0;
+        padding: 12px 24px 0;
         display: flex;
-        gap: 8px;
+        gap: 7px;
         flex-wrap: wrap;
       }
-
       .filter-btn {
-        padding: 5px 14px;
+        padding: 5px 13px;
         border-radius: 20px;
         border: 1.5px solid var(--border);
         background: transparent;
@@ -377,30 +796,26 @@
         cursor: pointer;
         transition: all 0.2s;
       }
-
       .filter-btn:hover {
-        border-color: var(--pink);
-        color: var(--pink-deep);
+        border-color: var(--accent);
+        color: var(--accent-deep);
       }
-
       .filter-btn.active {
-        background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+        background: var(--btn-grad);
         border-color: transparent;
         color: white;
-        box-shadow: 0 3px 10px rgba(219, 39, 119, 0.3);
+        box-shadow: 0 3px 10px rgba(201, 168, 76, 0.3);
       }
 
       /* ===== ADD FORM ===== */
       .add-form {
-        padding: 18px 24px 0;
+        padding: 14px 24px 0;
       }
-
       .add-row {
         display: flex;
         gap: 10px;
         margin-bottom: 10px;
       }
-
       .add-input {
         flex: 1;
         padding: 12px 16px;
@@ -413,19 +828,16 @@
         outline: none;
         transition: all 0.2s;
       }
-
       .add-input:focus {
-        border-color: var(--pink);
+        border-color: var(--accent);
         background: var(--surface);
-        box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.1);
+        box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.1);
       }
-
       .add-input::placeholder {
         color: var(--muted);
       }
-
       .btn-add {
-        background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+        background: var(--btn-grad);
         color: white;
         border: none;
         padding: 12px 20px;
@@ -435,21 +847,18 @@
         font-weight: 700;
         cursor: pointer;
         transition: all 0.2s;
-        box-shadow: 0 4px 14px rgba(219, 39, 119, 0.3);
+        box-shadow: 0 4px 14px rgba(201, 168, 76, 0.3);
         white-space: nowrap;
       }
-
       .btn-add:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(219, 39, 119, 0.4);
+        box-shadow: 0 8px 20px rgba(201, 168, 76, 0.4);
       }
-
       .add-meta {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 8px;
       }
-
       .meta-select,
       .meta-date {
         padding: 9px 12px;
@@ -463,18 +872,18 @@
         cursor: pointer;
         transition: all 0.2s;
       }
-
       .meta-select:focus,
       .meta-date:focus {
-        border-color: var(--pink);
+        border-color: var(--accent);
         background: var(--surface);
       }
 
       /* ===== TASK LIST ===== */
       .task-section {
-        padding: 20px 24px 24px;
+        padding: 18px 24px 24px;
+        flex: 1;
+        overflow-y: auto;
       }
-
       .section-label {
         font-size: 10px;
         font-weight: 700;
@@ -486,14 +895,12 @@
         align-items: center;
         gap: 8px;
       }
-
       .section-label::after {
         content: "";
         flex: 1;
         height: 1px;
         background: var(--border);
       }
-
       .task-list {
         display: flex;
         flex-direction: column;
@@ -513,18 +920,6 @@
         overflow: hidden;
         animation: slideIn 0.3s ease both;
       }
-
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateX(-12px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
       .task-card::before {
         content: "";
         position: absolute;
@@ -533,37 +928,34 @@
         bottom: 0;
         width: 3px;
         border-radius: 0 2px 2px 0;
-        transition: all 0.2s;
       }
-
       .task-card.prio-haute::before {
         background: var(--red);
       }
       .task-card.prio-moyenne::before {
-        background: var(--orange);
+        background: var(--accent);
       }
       .task-card.prio-basse::before {
         background: var(--green);
       }
-
       .task-card:hover {
         background: var(--surface);
-        border-color: var(--pink);
+        border-color: var(--accent);
         box-shadow: var(--shadow);
         transform: translateX(3px);
       }
-
       .task-card.done {
-        opacity: 0.55;
+        opacity: 0.5;
         background: var(--done-bg);
       }
-
       .task-card.done .task-text {
         text-decoration: line-through;
         color: var(--muted);
       }
+      .task-card.overdue-card {
+        border-color: rgba(239, 68, 68, 0.4);
+      }
 
-      /* Checkbox */
       .check-box {
         width: 22px;
         height: 22px;
@@ -577,16 +969,13 @@
         transition: all 0.2s;
         background: var(--check-bg);
       }
-
       .check-box:hover {
-        border-color: var(--pink);
+        border-color: var(--accent);
       }
-
       .check-box.checked {
-        background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+        background: var(--btn-grad);
         border-color: transparent;
       }
-
       .check-box.checked::after {
         content: "✓";
         color: white;
@@ -594,12 +983,10 @@
         font-weight: 700;
       }
 
-      /* Task content */
       .task-content {
         flex: 1;
         min-width: 0;
       }
-
       .task-text {
         font-size: 14px;
         font-weight: 500;
@@ -609,7 +996,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-
       .task-meta-row {
         display: flex;
         align-items: center;
@@ -626,7 +1012,6 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-
       .prio-haute {
         background: #fee2e2;
         color: var(--red);
@@ -639,14 +1024,22 @@
         background: #d1fae5;
         color: var(--green);
       }
+      [data-theme="dark"] .prio-moyenne {
+        background: #2a2010;
+        color: var(--accent);
+      }
 
       .cat-badge {
         font-size: 10px;
         font-weight: 600;
         padding: 2px 8px;
         border-radius: 20px;
-        background: var(--lavender);
-        color: #7c3aed;
+        background: var(--navy-light);
+        color: var(--navy);
+      }
+      [data-theme="dark"] .cat-badge {
+        background: var(--navy-light);
+        color: var(--accent);
       }
 
       .deadline-badge {
@@ -657,7 +1050,6 @@
         align-items: center;
         gap: 3px;
       }
-
       .deadline-badge.overdue {
         color: var(--red);
         font-weight: 700;
@@ -667,7 +1059,6 @@
         font-weight: 600;
       }
 
-      /* Delete btn */
       .delete-btn {
         background: transparent;
         color: var(--del-color);
@@ -683,85 +1074,46 @@
         transition: all 0.2s;
         flex-shrink: 0;
       }
-
       .delete-btn:hover {
-        background: var(--pink-light);
-        color: var(--pink-deep);
-        border-color: var(--pink);
+        background: #fee2e2;
+        color: var(--red);
+        border-color: var(--red);
       }
 
-      /* ===== EMPTY STATE ===== */
       .empty {
         text-align: center;
         padding: 44px 20px;
       }
-
       .empty-icon {
-        font-size: 48px;
+        font-size: 46px;
         display: block;
         margin-bottom: 14px;
         animation: wiggle 2.5s ease-in-out infinite;
       }
-
-      @keyframes wiggle {
-        0%,
-        100% {
-          transform: rotate(-6deg);
-        }
-        50% {
-          transform: rotate(6deg);
-        }
-      }
-
       .empty-title {
-        font-family: "Playfair Display", serif;
-        font-size: 18px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 20px;
         color: var(--text);
         margin-bottom: 6px;
       }
-
       .empty-sub {
         font-size: 13px;
         color: var(--muted);
       }
 
-      /* ===== FOOTER ===== */
       .footer {
-        padding: 12px 24px;
+        padding: 13px 24px;
         background: var(--footer-bg);
         border-top: 1px solid var(--border);
-        text-align: center;
-        font-size: 11px;
-        color: var(--muted);
-        transition: background 0.3s;
-      }
-
-      /* ===== PROGRESS BAR ===== */
-      .progress-wrap {
-        padding: 0 24px 16px;
-      }
-
-      .progress-label {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
         font-size: 11px;
         color: var(--muted);
-        margin-bottom: 6px;
-        font-weight: 600;
       }
-
-      .progress-bar {
-        height: 6px;
-        background: var(--border);
-        border-radius: 10px;
-        overflow: hidden;
-      }
-
-      .progress-fill {
-        height: 100%;
-        background: linear-gradient(90deg, var(--pink), var(--pink-deep));
-        border-radius: 10px;
-        transition: width 0.4s ease;
+      .footer-dot {
+        color: var(--accent);
       }
     </style>
   </head>
@@ -779,25 +1131,173 @@
       </button>
     </div>
 
-    <div class="container">
-      <div class="header">
-        <div class="header-row">
-          <div class="logo-box">✨</div>
-          <div>
-            <div class="header-title">Mes Tâches</div>
-            <div class="header-sub">Organisez votre journée</div>
+    <!-- NOTIFICATION BANNER -->
+    <div id="notifBanner">
+      <div class="notif-inner" id="notifInner">
+        <span class="notif-icon" id="notifIcon">🔔</span>
+        <div class="notif-body">
+          <div class="notif-title" id="notifTitle"></div>
+          <div class="notif-list" id="notifList"></div>
+        </div>
+        <button class="notif-close" onclick="closeBanner()">✕</button>
+      </div>
+    </div>
+
+    <!-- AUTH OVERLAY -->
+    <div id="authOverlay">
+      <div class="auth-card">
+        <div class="auth-header">
+          <span class="auth-logo">📋</span>
+          <div class="auth-title">Task<span>Flow</span></div>
+          <div class="auth-sub">Votre espace de travail personnel</div>
+        </div>
+        <div class="auth-tabs">
+          <button
+            class="auth-tab active"
+            id="tabLogin"
+            onclick="switchTab('login')"
+          >
+            🔑 Connexion
+          </button>
+          <button
+            class="auth-tab"
+            id="tabRegister"
+            onclick="switchTab('register')"
+          >
+            ✦ Créer un compte
+          </button>
+        </div>
+        <div class="auth-body">
+          <div id="authError" class="auth-error"></div>
+          <!-- LOGIN -->
+          <div id="formLogin">
+            <div class="auth-field">
+              <label class="auth-label">Pseudo</label>
+              <input
+                class="auth-input"
+                id="loginUser"
+                type="text"
+                placeholder="Votre pseudo..."
+                autocomplete="username"
+              />
+            </div>
+            <div class="auth-field">
+              <label class="auth-label">Mot de passe</label>
+              <div class="pw-wrap">
+                <input
+                  class="auth-input"
+                  id="loginPw"
+                  type="password"
+                  placeholder="Votre mot de passe..."
+                  autocomplete="current-password"
+                />
+                <button
+                  type="button"
+                  class="eye-btn"
+                  onclick="toggleEye('loginPw', this)"
+                >
+                  👁️
+                </button>
+              </div>
+            </div>
+            <button class="btn-auth" onclick="doLogin()">Se connecter →</button>
           </div>
-          <div class="stats-row">
-            <div class="stat-pill" id="statTotal">0<span>total</span></div>
-            <div class="stat-pill" id="statDone">0<span>faites</span></div>
+          <!-- REGISTER -->
+          <div id="formRegister" style="display: none">
+            <div class="auth-field">
+              <label class="auth-label">Choisissez un pseudo</label>
+              <input
+                class="auth-input"
+                id="regUser"
+                type="text"
+                placeholder="Ex: jean.dupont"
+                autocomplete="username"
+              />
+            </div>
+            <div class="auth-field">
+              <label class="auth-label">Mot de passe</label>
+              <div class="pw-wrap">
+                <input
+                  class="auth-input"
+                  id="regPw"
+                  type="password"
+                  placeholder="Min. 4 caractères..."
+                  autocomplete="new-password"
+                />
+                <button
+                  type="button"
+                  class="eye-btn"
+                  onclick="toggleEye('regPw', this)"
+                >
+                  👁️
+                </button>
+              </div>
+            </div>
+            <div class="auth-field">
+              <label class="auth-label">Confirmer le mot de passe</label>
+              <div class="pw-wrap">
+                <input
+                  class="auth-input"
+                  id="regPw2"
+                  type="password"
+                  placeholder="Répétez le mot de passe..."
+                  autocomplete="new-password"
+                />
+                <button
+                  type="button"
+                  class="eye-btn"
+                  onclick="toggleEye('regPw2', this)"
+                >
+                  👁️
+                </button>
+              </div>
+            </div>
+            <button class="btn-auth" onclick="doRegister()">
+              Créer mon compte →
+            </button>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="progress-wrap" style="padding-top: 16px">
+    <!-- MAIN APP -->
+    <div
+      class="container"
+      id="appContainer"
+      style="display: none; flex-direction: column; height: 100vh"
+    >
+      <div class="header">
+        <div class="header-goldline"></div>
+        <div class="header-row">
+          <div class="logo-box">📋</div>
+          <div>
+            <div class="header-title">Task<span>Flow</span></div>
+            <div class="header-sub">Organisez votre journée</div>
+          </div>
+          <div class="user-badge">
+            <span class="user-name" id="displayUsername">—</span>
+            <button class="btn-logout" onclick="doLogout()">Déco</button>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-pill" id="statTotal">0<span>total</span></div>
+          <div class="stat-pill" id="statDone">0<span>faites</span></div>
+          <div class="stat-pill" id="statOverdue" style="display: none">
+            0<span>en retard</span>
+          </div>
+          <button
+            class="notif-perm-btn"
+            id="notifPermBtn"
+            onclick="requestNotifPermission()"
+          >
+            🔔 Activer notifs
+          </button>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
         <div class="progress-label">
-          <span>Progression</span>
-          <span id="progressPct">0%</span>
+          <span>Progression</span><span id="progressPct">0%</span>
         </div>
         <div class="progress-bar">
           <div class="progress-fill" id="progressFill" style="width: 0%"></div>
@@ -867,22 +1367,27 @@
       <div class="task-section">
         <div class="section-label" id="sectionLabel">À faire</div>
         <div id="emptyState" class="empty" style="display: none">
-          <span class="empty-icon">🌸</span>
-          <div class="empty-title">Tout est clair !</div>
+          <span class="empty-icon">📂</span>
+          <div class="empty-title">Aucune tâche ici</div>
           <div class="empty-sub">Ajoutez votre première tâche ci-dessus</div>
         </div>
         <div class="task-list" id="taskList"></div>
       </div>
 
-      <div class="footer">Fait avec 💗 · Todo List</div>
+      <div class="footer">
+        <span>TaskFlow</span><span class="footer-dot">✦</span
+        ><span>Fait avec soin</span>
+      </div>
     </div>
 
     <script>
-      let tasks = [];
-      let currentFilter = "toutes";
+      let tasks = [],
+        currentFilter = "toutes",
+        notifIntervalId = null;
       const today = new Date().toISOString().split("T")[0];
       document.getElementById("selDate").value = today;
 
+      /* ===== THEME ===== */
       function setTheme(t) {
         document.documentElement.setAttribute("data-theme", t);
         document
@@ -893,9 +1398,227 @@
           .classList.toggle("active", t === "dark");
         localStorage.setItem("theme", t);
       }
-
       setTheme(localStorage.getItem("theme") || "light");
 
+      /* ===== EYE ===== */
+      function toggleEye(id, btn) {
+        const el = document.getElementById(id);
+        const show = el.type === "password";
+        el.type = show ? "text" : "password";
+        btn.textContent = show ? "🙈" : "👁️";
+      }
+
+      /* ===== AUTH UI ===== */
+      function switchTab(tab) {
+        const isLogin = tab === "login";
+        document.getElementById("formLogin").style.display = isLogin
+          ? ""
+          : "none";
+        document.getElementById("formRegister").style.display = isLogin
+          ? "none"
+          : "";
+        document.getElementById("tabLogin").classList.toggle("active", isLogin);
+        document
+          .getElementById("tabRegister")
+          .classList.toggle("active", !isLogin);
+        clearAuthError();
+      }
+      function showAuthError(msg) {
+        const el = document.getElementById("authError");
+        el.textContent = "⚠️ " + msg;
+        el.style.display = "block";
+        el.style.animation = "none";
+        el.offsetHeight;
+        el.style.animation = "shake 0.3s ease";
+      }
+      function clearAuthError() {
+        const el = document.getElementById("authError");
+        el.style.display = "none";
+        el.textContent = "";
+      }
+      function showApp(username) {
+        document.getElementById("authOverlay").style.display = "none";
+        const app = document.getElementById("appContainer");
+        app.style.display = "flex";
+        app.style.flexDirection = "column";
+        document.getElementById("displayUsername").textContent =
+          "👤 " + username;
+        loadTasks();
+        checkNotifPermission();
+      }
+
+      /* ===== NOTIFICATION BANNER ===== */
+      function showBanner(type, title, items) {
+        document.getElementById("notifInner").className = "notif-inner " + type;
+        document.getElementById("notifIcon").textContent =
+          type === "danger" ? "🚨" : type === "warning" ? "⚠️" : "ℹ️";
+        document.getElementById("notifTitle").textContent = title;
+        document.getElementById("notifList").innerHTML = items
+          .map((i) => "• " + i)
+          .join("<br>");
+        document.getElementById("notifBanner").style.display = "block";
+      }
+      function closeBanner() {
+        document.getElementById("notifBanner").style.display = "none";
+      }
+
+      function checkAndShowBanner() {
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
+        const active = tasks.filter((t) => !t.done);
+        const overdue = active.filter((t) => t.date && new Date(t.date) < now);
+        const dueToday = active.filter((t) => {
+          if (!t.date) return false;
+          const d = new Date(t.date);
+          d.setHours(0, 0, 0, 0);
+          return d.getTime() === now.getTime();
+        });
+        if (overdue.length > 0) {
+          showBanner(
+            "danger",
+            `${overdue.length} tâche${overdue.length > 1 ? "s" : ""} en retard !`,
+            overdue.map((t) => t.text),
+          );
+        } else if (dueToday.length > 0) {
+          showBanner(
+            "warning",
+            `${dueToday.length} tâche${dueToday.length > 1 ? "s" : ""} à faire aujourd'hui`,
+            dueToday.map((t) => t.text),
+          );
+        } else {
+          closeBanner();
+        }
+      }
+
+      /* ===== BROWSER NOTIFICATIONS ===== */
+      function checkNotifPermission() {
+        if (!("Notification" in window)) return;
+        const btn = document.getElementById("notifPermBtn");
+        if (Notification.permission === "default") {
+          btn.style.display = "block";
+        } else if (Notification.permission === "granted") {
+          btn.style.display = "none";
+          startNotifInterval();
+        } else {
+          btn.style.display = "none";
+        }
+      }
+      async function requestNotifPermission() {
+        if (!("Notification" in window)) return;
+        const perm = await Notification.requestPermission();
+        document.getElementById("notifPermBtn").style.display = "none";
+        if (perm === "granted") {
+          startNotifInterval();
+          setTimeout(sendBrowserNotifs, 1000);
+        }
+      }
+      function startNotifInterval() {
+        if (notifIntervalId) return;
+        notifIntervalId = setInterval(sendBrowserNotifs, 60 * 60 * 1000);
+        setTimeout(sendBrowserNotifs, 3000);
+      }
+      function sendBrowserNotifs() {
+        if (Notification.permission !== "granted") return;
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
+        const active = tasks.filter((t) => !t.done);
+        const overdue = active.filter((t) => t.date && new Date(t.date) < now);
+        const dueToday = active.filter((t) => {
+          if (!t.date) return false;
+          const d = new Date(t.date);
+          d.setHours(0, 0, 0, 0);
+          return d.getTime() === now.getTime();
+        });
+        if (overdue.length > 0) {
+          new Notification("🚨 TaskFlow — Tâches en retard", {
+            body: overdue.map((t) => "• " + t.text).join("\n"),
+          });
+        } else if (dueToday.length > 0) {
+          new Notification("⚠️ TaskFlow — À faire aujourd'hui", {
+            body: dueToday.map((t) => "• " + t.text).join("\n"),
+          });
+        }
+      }
+
+      /* ===== AUTH API ===== */
+      async function doLogin() {
+        const username = document.getElementById("loginUser").value.trim();
+        const password = document.getElementById("loginPw").value.trim();
+        if (!username || !password) {
+          showAuthError("Remplissez tous les champs.");
+          return;
+        }
+        clearAuthError();
+        try {
+          const res = await fetch("/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            showAuthError(data.error || "Erreur de connexion");
+            return;
+          }
+          showApp(data.username);
+        } catch {
+          showAuthError("Erreur réseau.");
+        }
+      }
+      async function doRegister() {
+        const username = document.getElementById("regUser").value.trim();
+        const password = document.getElementById("regPw").value.trim();
+        const password2 = document.getElementById("regPw2").value.trim();
+        if (!username || !password || !password2) {
+          showAuthError("Remplissez tous les champs.");
+          return;
+        }
+        if (password !== password2) {
+          showAuthError("Les mots de passe ne correspondent pas.");
+          return;
+        }
+        clearAuthError();
+        try {
+          const res = await fetch("/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            showAuthError(data.error || "Erreur d'inscription");
+            return;
+          }
+          showApp(data.username);
+        } catch {
+          showAuthError("Erreur réseau.");
+        }
+      }
+      async function doLogout() {
+        await fetch("/auth/logout", { method: "POST" });
+        tasks = [];
+        if (notifIntervalId) {
+          clearInterval(notifIntervalId);
+          notifIntervalId = null;
+        }
+        document.getElementById("taskList").innerHTML = "";
+        document.getElementById("appContainer").style.display = "none";
+        document.getElementById("notifBanner").style.display = "none";
+        document.getElementById("authOverlay").style.display = "flex";
+        document.getElementById("loginUser").value = "";
+        document.getElementById("loginPw").value = "";
+        switchTab("login");
+      }
+      async function initApp() {
+        try {
+          const res = await fetch("/auth/me");
+          const data = await res.json();
+          if (data.username) showApp(data.username);
+        } catch {}
+      }
+      initApp();
+
+      /* ===== FILTERS ===== */
       function setFilter(f, btn) {
         currentFilter = f;
         document
@@ -905,108 +1628,90 @@
         render();
       }
 
+      /* ===== TASKS API ===== */
       async function loadTasks() {
         try {
           const res = await fetch("/tasks");
-          if (!res.ok) throw new Error("Erreur chargement");
+          if (res.status === 401) return;
+          if (!res.ok) throw new Error();
           tasks = await res.json();
           render();
-        } catch (error) {
-          console.error(error);
-        }
+          checkAndShowBanner();
+        } catch {}
       }
-
       async function addTask() {
         const input = document.getElementById("taskInput");
         const text = input.value.trim();
-
         if (!text) {
           input.focus();
           return;
         }
-
         const payload = {
-          text: text,
+          text,
           prio: document.getElementById("selPrio").value,
           cat: document.getElementById("selCat").value,
           date: document.getElementById("selDate").value,
         };
-
         try {
           const res = await fetch("/tasks", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
           });
-
-          if (!res.ok) throw new Error("Erreur ajout");
-
+          if (!res.ok) throw new Error();
           input.value = "";
           input.focus();
           await loadTasks();
-        } catch (error) {
-          console.error(error);
+        } catch {
           alert("Impossible d'ajouter la tâche.");
         }
       }
-
       async function toggleDone(id) {
         try {
-          const res = await fetch(`/tasks/${id}/toggle`, {
-            method: "POST",
-          });
-
-          if (!res.ok) throw new Error("Erreur modification");
+          const res = await fetch(`/tasks/${id}/toggle`, { method: "POST" });
+          if (!res.ok) throw new Error();
           await loadTasks();
-        } catch (error) {
-          console.error(error);
+        } catch {
           alert("Impossible de modifier la tâche.");
         }
       }
-
       async function deleteTask(id) {
         try {
-          const res = await fetch(`/tasks/${id}`, {
-            method: "DELETE",
-          });
-
-          if (!res.ok) throw new Error("Erreur suppression");
+          const res = await fetch(`/tasks/${id}`, { method: "DELETE" });
+          if (!res.ok) throw new Error();
           await loadTasks();
-        } catch (error) {
-          console.error(error);
+        } catch {
           alert("Impossible de supprimer la tâche.");
         }
       }
 
+      /* ===== RENDER ===== */
       function deadlineInfo(dateStr) {
         if (!dateStr) return null;
-
-        const d = new Date(dateStr);
-        const now = new Date();
+        const d = new Date(dateStr),
+          now = new Date();
         now.setHours(0, 0, 0, 0);
         const diff = Math.round((d - now) / 86400000);
-
-        if (diff < 0) return { label: "En retard !", cls: "overdue" };
-        if (diff === 0) return { label: "Aujourd'hui", cls: "soon" };
-        if (diff === 1) return { label: "Demain", cls: "soon" };
-
+        if (diff < 0)
+          return { label: "En retard !", cls: "overdue", isOverdue: true };
+        if (diff === 0)
+          return { label: "Aujourd'hui", cls: "soon", isOverdue: false };
+        if (diff === 1)
+          return { label: "Demain", cls: "soon", isOverdue: false };
         return {
           label: d.toLocaleDateString("fr-FR", {
             day: "2-digit",
             month: "short",
           }),
           cls: "",
+          isOverdue: false,
         };
       }
-
       function getFiltered() {
         const q = document
           .getElementById("searchInput")
           .value.trim()
           .toLowerCase();
-
         return tasks.filter((t) => {
           if (q && !t.text.toLowerCase().includes(q)) return false;
           if (currentFilter === "actives") return !t.done;
@@ -1017,15 +1722,18 @@
           return true;
         });
       }
-
       function render() {
-        const list = document.getElementById("taskList");
-        const empty = document.getElementById("emptyState");
-        const label = document.getElementById("sectionLabel");
-
-        const done = tasks.filter((t) => t.done).length;
-        const total = tasks.length;
-        const pct = total ? Math.round((done / total) * 100) : 0;
+        const list = document.getElementById("taskList"),
+          empty = document.getElementById("emptyState"),
+          label = document.getElementById("sectionLabel");
+        const done = tasks.filter((t) => t.done).length,
+          total = tasks.length,
+          pct = total ? Math.round((done / total) * 100) : 0;
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
+        const overdue = tasks.filter(
+          (t) => !t.done && t.date && new Date(t.date) < now,
+        ).length;
 
         document.getElementById("statTotal").innerHTML =
           `${total}<span>total</span>`;
@@ -1034,18 +1742,25 @@
         document.getElementById("progressFill").style.width = pct + "%";
         document.getElementById("progressPct").textContent = pct + "%";
 
-        const filtered = getFiltered();
+        const ovEl = document.getElementById("statOverdue");
+        if (overdue > 0) {
+          ovEl.style.display = "";
+          ovEl.innerHTML = `${overdue}<span>en retard</span>`;
+          ovEl.style.cssText +=
+            "background:rgba(239,68,68,0.2);border-color:rgba(239,68,68,0.4);color:#fca5a5";
+        } else {
+          ovEl.style.display = "none";
+        }
 
+        const filtered = getFiltered();
         if (filtered.length === 0) {
           empty.style.display = "block";
           list.innerHTML = "";
           label.style.display = "none";
           return;
         }
-
         empty.style.display = "none";
         label.style.display = "flex";
-
         const active = filtered.filter((t) => !t.done).length;
         label.innerHTML = `${active} tâche${active !== 1 ? "s" : ""} restante${active !== 1 ? "s" : ""} `;
 
@@ -1055,36 +1770,40 @@
             const dlHtml = dl
               ? `<span class="deadline-badge ${dl.cls}">📅 ${dl.label}</span>`
               : "";
-
-            return `
-        <div class="task-card prio-${t.prio} ${t.done ? "done" : ""}" style="animation-delay:${i * 0.04}s">
-          <div class="check-box ${t.done ? "checked" : ""}" onclick="toggleDone(${t.id})"></div>
-          <div class="task-content">
-            <div class="task-text">${escapeHtml(t.text)}</div>
-            <div class="task-meta-row">
-              <span class="prio-badge prio-${t.prio}">${t.prio}</span>
-              <span class="cat-badge">${escapeHtml(t.cat)}</span>
-              ${dlHtml}
+            const ovClass = dl && dl.isOverdue && !t.done ? "overdue-card" : "";
+            return `<div class="task-card prio-${t.prio} ${t.done ? "done" : ""} ${ovClass}" style="animation-delay:${i * 0.04}s">
+            <div class="check-box ${t.done ? "checked" : ""}" onclick="toggleDone(${t.id})"></div>
+            <div class="task-content">
+              <div class="task-text">${escapeHtml(t.text)}</div>
+              <div class="task-meta-row">
+                <span class="prio-badge prio-${t.prio}">${t.prio}</span>
+                <span class="cat-badge">${escapeHtml(t.cat)}</span>
+                ${dlHtml}
+              </div>
             </div>
-          </div>
-          <button class="delete-btn" onclick="deleteTask(${t.id})" title="Supprimer">🗑</button>
-        </div>
-      `;
+            <button class="delete-btn" onclick="deleteTask(${t.id})" title="Supprimer">🗑</button>
+          </div>`;
           })
           .join("");
       }
-
       function escapeHtml(text) {
-        const div = document.createElement("div");
-        div.textContent = text;
-        return div.innerHTML;
+        const d = document.createElement("div");
+        d.textContent = text;
+        return d.innerHTML;
       }
 
       document.getElementById("taskInput").addEventListener("keydown", (e) => {
         if (e.key === "Enter") addTask();
       });
-
-      loadTasks();
+      document.getElementById("loginPw").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") doLogin();
+      });
+      document.getElementById("loginUser").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") doLogin();
+      });
+      document.getElementById("regPw2").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") doRegister();
+      });
     </script>
   </body>
 </html>
