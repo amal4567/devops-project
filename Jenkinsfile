@@ -36,10 +36,10 @@ pipeline {
         bat 'py --version'
     }
 }
-       stage('Install dependencies') {
+    stage('Install dependencies') {
     steps {
-        bat 'py -m pip install --upgrade pip'
-        bat 'py -m pip install -r requirements.txt'
+        bat '"C:\\Users\\hp\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m pip install --upgrade pip'
+        bat '"C:\\Users\\hp\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m pip install -r requirements.txt'
     }
 }
 
