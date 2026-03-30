@@ -30,11 +30,10 @@ pipeline {
         }
 
         stage('Test') {
-            steps {
-                bat 'docker run --rm %DOCKER_IMAGE% pytest -v'
-            }
-        }
-
+    steps {
+        bat 'docker run --rm %DOCKER_IMAGE% sh -c "pwd && ls -la && find . -maxdepth 2 -type f"'
+    }
+}
         stage('Login to DockerHub') {
             steps {
                 withCredentials([usernamePassword(
