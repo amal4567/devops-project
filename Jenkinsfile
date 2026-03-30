@@ -28,26 +28,13 @@ pipeline {
                 bat 'docker build -t %DOCKER_IMAGE% -t %DOCKER_IMAGE_LATEST% .'
             }
         }
-        stage('Debug Python') {
-    steps {
-        bat 'where python'
-        bat 'python --version'
-        bat 'where py'
-        bat 'py --version'
-    }
-}
-    stage('Install dependencies') {
-    steps {
-        bat '"C:\\Users\\hp\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m pip install --upgrade pip'
-        bat '"C:\\Users\\hp\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m pip install -r requirements.txt'
-    }
-}
 
         stage('Test') {
             steps {
-                bat 'py -m pytest -v'
+                bat 'docker run --rm %DOCKER_IMAGE% pytest -v'
             }
         }
+
         stage('Login to DockerHub') {
             steps {
                 withCredentials([usernamePassword(
@@ -70,7 +57,7 @@ pipeline {
         stage('Prepare Kubernetes Manifest') {
             steps {
                 bat '''
-                powershell -Command "(Get-Content k8s\\app-deployment.yaml) -replace 'amalguerdani/flask-app:latest','%DOCKER_IMAGE%' | Set-Content k8s\\app-deployment-temp.yaml"
+                powershell -Command "(Get-Content %K8S_DEPLOYMENT_FILE%) -replace 'amalguerdani/flask-app:latest','%DOCKER_IMAGE%' | Set-Content k8s\\app-deployment-temp.yaml"
                 '''
             }
         }
@@ -85,10 +72,10 @@ pipeline {
                     bat '''
                     copy "%SSH_KEY%" "%WORKSPACE%\\jenkins_deploy_key" >nul
                     icacls "%WORKSPACE%\\jenkins_deploy_key" /inheritance:r
-                    icacls "%WORKSPACE%\\jenkins_deploy_key" /grant:r "%USERNAME%:R"
+                    icacls "%WORKSPACE%\\jenkins_deploy_key" /grant:r "%USERNAME%:R" >nul
 
-                    scp -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no k8s\\app-deployment-temp.yaml %SSH_USER%@%MASTER_IP%:~/app-deployment.yaml
-                    scp -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %K8S_SERVICE_FILE% %SSH_USER%@%MASTER_IP%:~/app-service.yaml
+                    scp -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no "k8s\\app-deployment-temp.yaml" %SSH_USER%@%MASTER_IP%:~/app-deployment.yaml
+                    scp -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no "%K8S_SERVICE_FILE%" %SSH_USER%@%MASTER_IP%:~/app-service.yaml
 
                     ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl apply -f ~/app-service.yaml --validate=false"
                     ssh -i "%WORKSPACE%\\jenkins_deploy_key" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl apply -f ~/app-deployment.yaml --validate=false"
@@ -106,7 +93,7 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline SUCCESS: build, push, and deploy completed.'
+            echo 'Pipeline SUCCESS: build, test, push, and deploy completed.'
         }
         failure {
             echo 'Pipeline FAILED: check the console output.'
