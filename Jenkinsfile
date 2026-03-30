@@ -29,11 +29,11 @@ pipeline {
             }
         }
        stage('Install dependencies') {
-            steps {
-                bat 'py -m pip install -r requirements.txt'
-                bat 'py -m pip install pytest'
-            }
-        }
+    steps {
+        bat 'py -m pip install --upgrade pip'
+        bat 'py -m pip install -r requirements.txt'
+    }
+}
 
         stage('Test') {
             steps {
