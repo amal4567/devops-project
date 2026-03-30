@@ -28,6 +28,14 @@ pipeline {
                 bat 'docker build -t %DOCKER_IMAGE% -t %DOCKER_IMAGE_LATEST% .'
             }
         }
+        stage('Debug Python') {
+    steps {
+        bat 'where python'
+        bat 'python --version'
+        bat 'where py'
+        bat 'py --version'
+    }
+}
        stage('Install dependencies') {
     steps {
         bat 'py -m pip install --upgrade pip'
