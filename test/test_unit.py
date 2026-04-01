@@ -23,7 +23,6 @@ def test_register_user(client):
 
 
 def test_login_user(client):
-    # créer user
     client.post("/auth/register", json={
         "username": "user1",
         "password": "1234"
@@ -33,5 +32,4 @@ def test_login_user(client):
         "username": "user1",
         "password": "1234"
     })
-
     assert response.status_code == 200

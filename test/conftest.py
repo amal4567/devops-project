@@ -1,7 +1,7 @@
-import os
-import sys
-import pytest
 from app import app as flask_app
+import sys
+import os
+import pytest
 
 sys.path.insert(0, os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..')))
