@@ -60,6 +60,9 @@ pipeline {
             usernameVariable: 'SSH_USER'
         )]) {
             bat '''
+            icacls "%SSH_KEY%" /inheritance:r
+            icacls "%SSH_KEY%" /grant:r "%USERNAME%:R"
+
             scp -i "%SSH_KEY%" -o StrictHostKeyChecking=no "%K8S_DEPLOYMENT_FILE%" %SSH_USER%@%MASTER_IP%:~/app-deployment.yaml
             scp -i "%SSH_KEY%" -o StrictHostKeyChecking=no "%K8S_SERVICE_FILE%" %SSH_USER%@%MASTER_IP%:~/app-service.yaml
 
@@ -67,9 +70,6 @@ pipeline {
             ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl apply -f ~/app-deployment.yaml --validate=false"
             ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl set image deployment/%K8S_DEPLOYMENT_NAME% flask-app=%DOCKER_IMAGE%"
             ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl rollout status deployment/%K8S_DEPLOYMENT_NAME% --timeout=180s"
-            ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl get deployment %K8S_DEPLOYMENT_NAME% -o=jsonpath='{.spec.template.spec.containers[0].image}'; echo"
-            ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl get pods -o wide"
-            ssh -i "%SSH_KEY%" -o StrictHostKeyChecking=no %SSH_USER%@%MASTER_IP% "sudo k3s kubectl get svc"
             '''
         }
     }
