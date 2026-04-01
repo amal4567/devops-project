@@ -52,7 +52,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes Master') {
+stage('Deploy to Kubernetes Master') {
     steps {
         withCredentials([sshUserPrivateKey(
             credentialsId: 'k8s-master-ssh',
@@ -61,7 +61,8 @@ pipeline {
         )]) {
             bat '''
             icacls "%SSH_KEY%" /inheritance:r
-            icacls "%SSH_KEY%" /grant:r "%USERNAME%:R"
+            icacls "%SSH_KEY%" /grant:r "SYSTEM:R"
+            icacls "%SSH_KEY%" /remove "BUILTIN\\Utilisateurs"
 
             scp -i "%SSH_KEY%" -o StrictHostKeyChecking=no "%K8S_DEPLOYMENT_FILE%" %SSH_USER%@%MASTER_IP%:~/app-deployment.yaml
             scp -i "%SSH_KEY%" -o StrictHostKeyChecking=no "%K8S_SERVICE_FILE%" %SSH_USER%@%MASTER_IP%:~/app-service.yaml
